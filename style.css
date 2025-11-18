@@ -1,0 +1,140 @@
+/* -------------------------------------------------
+   COMP584 Project 2 – Flexbox Layout (Mobile-First)
+   ------------------------------------------------- */
+
+/* Box sizing */
+html { box-sizing: border-box; }
+*, *:before, *:after { box-sizing: inherit; }
+
+body {
+  font-family: Arial, Geneva, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+}
+a { color: #2772B0; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.wrapper {
+  width: 97%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 1rem;
+}
+div img {
+  width: 100%;
+  max-width: 225px;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+/* -------------------------------------------------
+   FLEX CONTAINER (All rows)
+   ------------------------------------------------- */
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Default mobile column */
+[class*="col-"] {
+  flex: 0 0 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+
+/* Background colors (from your original) */
+.col-1  { background-color: #A3CDD9; }
+.col-2  { background-color: #FFFCE6; }
+
+/* -------------------------------------------------
+   ROW-SPECIFIC CLASSES
+   ------------------------------------------------- */
+.row-3 .col-left  { background: #A3CDD9; }
+.row-3 .col-right { background: #FFFCE6; }
+
+.row-4 .col-full { background: #E8F5E9; }
+
+.row-5 .col-1 { background: #A3CDD9; }
+.row-5 .col-2 { background: #FFFCE6; }
+
+.row-6 .card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+.row-6 .card img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* -------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   ------------------------------------------------- */
+
+/* Tablet & Desktop: 480px+ */
+@media only screen and (min-width: 480px) {
+  .col-1,
+  .col-2 {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+/* Desktop: 768px+ */
+@media only screen and (min-width: 768px) {
+
+  /* Row 1 & 5: 4 equal cols → 1 unit = 25% */
+  .col-1 { flex: 0 0 calc(25% - 1rem); }
+
+  /* Row 2: 2 cols → 2 units = 50% */
+  .col-2 { flex: 0 0 calc(50% - 1rem); }
+
+  /* Row 3: 1 + 3 */
+  .row-3 .col-left  { flex: 0 0 calc(25% - 1rem); }
+  .row-3 .col-right { flex: 0 0 calc(75% - 1rem); }
+
+  /* Row 4: full width */
+  .row-4 .col-full { flex: 0 0 calc(100% - 2rem); margin: 0 1rem; }
+
+  /* Row 5: 1-2-1 */
+  .row-5 .col-1 { flex: 0 0 calc(25% - 1rem); }
+  .row-5 .col-2 { flex: 0 0 calc(50% - 1rem); }
+
+  /* Row 6: 5 cards */
+  .row-6 { justify-content: space-evenly; }
+  .row-6 .card { flex: 0 0 calc(18% - 1rem); }
+}
+
+/* Tablet Only: 768px – 1023px */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .row-3 .col-left,
+  .row-3 .col-right { flex: 0 0 calc(50% - 1rem); }
+
+  .row-4 .col-full { flex: 0 0 calc(50% - 1rem); }
+
+  /* Row 5: reverse order, middle first */
+  .row-5 { flex-direction: row-reverse; }
+  .row-5 .col-2 { order: -1; }
+  .row-5 .col-1 { flex: 0 0 calc(50% - 1rem); }
+
+  .row-6 .card { flex: 0 0 calc(33.333% - 1rem); }
+}
+
+/* Mobile: < 480px */
+@media only screen and (max-width: 479px) {
+  .row { flex-direction: column; }
+  [class*="col-"], .row-6 .card {
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+  }
+  .row-5 .col-2 { order: -1; } /* middle card on top */
+}
