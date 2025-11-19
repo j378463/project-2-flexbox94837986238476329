@@ -12,7 +12,8 @@ This is my submission for the Project 2 Flexbox assignment.
 ## Hosting
 
 
-This site is hosted on GitHub (https://j378463.github.io/project-2-flexbox94837986238476327/).
+This site is hosted on GitHub (https://j378463.github.io/project-2-flexbox94837986238476329/).
+
 
 
 
